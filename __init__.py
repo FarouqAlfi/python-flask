@@ -20,6 +20,14 @@ app.config.from_pyfile('app.cfg')
 def dashboard():
     return "hello"
 
+@app.route('/api/get-id')
+def getId():
+    cur = mysql.connection.cursor()
+    query = "select * from data_desa"
+    cur.execute(query)
+    data = cur.fetchall()
+    return jsonify(data)
+
 
 
 if __name__ == '__main__':
